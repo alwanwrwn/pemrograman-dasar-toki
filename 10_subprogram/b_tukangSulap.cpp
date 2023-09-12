@@ -1,14 +1,18 @@
-#include "stdio.h"
 #include <cstdio>
 
+void swap(int &a, int &b){
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
 int main(){
-	int i, n, t, a[2][1001], x, y;
-	char p, q;
+	int i,j, n, t, a[2][1001];
 
 	scanf("%d", &n);
 
 	for (i=0; i<2; i++) {
-		for (int j = 0; j<n; j++) {
+		for (j = 0; j<n; j++) {
 			scanf("%d", &a[i][j]);
 		}
 	}
@@ -16,33 +20,27 @@ int main(){
 	scanf("%d", &t);
 
 	for (i=0; i<t; i++) {
-		//scanf("%c %d %c %d", &p, &x, &q, &y);
-		
-		scanf("%c", &p);
-		scanf("%d", &x);
-		scanf("%c", &q);
-		scanf("%d", &y);
-		//printf("%c %c\n", p, q);
-		//printf("%d %d\n\n", x, y);
-		
-		//p -= 'A';
-		//q -= 'A';
-		
-		p = 0;
-		q = 1;
+		char buff1[1], buff2[1];
+		int x,y;
 
-		int temp = a[p][x-1];
-		a[p][x-1] = a[q][y-1];
-		a[q][y-1] = temp;
+		scanf("%s %d %s %d", buff1, &x, buff2, &y);
+		
+		int p = buff1[0] - 'A';
+		int q = buff2[0] - 'A';
+		
+		x--;
+		y--;
+
+		swap(a[p][x], a[q][y]);
 	}
 
 	for (i=0; i<2; i++) {
-		for (int j = 0; j<n; j++) {
+		for (j = 0; j<n; j++) {
 			printf("%d ", a[i][j]);
 		}
+
 		printf("\n");
 	}
-
 
 	return 0;
 }
