@@ -86,10 +86,6 @@ int main(){
 
 	sieve(n, ar);
 
-	//for (i=2; i<n; i++) {
-	//	printf("%d %d\n",i, ar[i]);
-	//}
-
 	for (i=2; i<=n; i++) {
 		if (ar[i] == 1) {
 			if (n%i == 0) {
