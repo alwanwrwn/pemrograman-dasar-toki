@@ -1,31 +1,26 @@
-#include <cstdlib>
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-string palindrom(string s, int start,int end){
-	cout<<s[start]<<start<<"   "<<s[end]<<end<<"\n";
+void palindrom(string s, int index){
+	int length = s.length()-1;
 	
-	if (start-end == 0 || start-end == 1) {
-		return "YA";
-		exit;
-	}
-
-	if(s[start] == s[end]){
-		if (start == end) {
-			return "YA";
-		} else {	
-			palindrom(s, start+1, end-1);
+	if (s[index] == s[length-index]) {
+		if (index == length-index || index - (length-index) == -1) {
+			cout<<"YA";
+		} else {
+			palindrom(s, index+1);
 		}
+	} else {
+		cout<<"BUKAN";
 	}
-	return "BUKAN";
 }
 
 int main(){
 	string s; cin>>s;
 
-	cout<<palindrom(s, 0, s.length()-1);
-	
+	palindrom(s, 0);
+
 	return 0;
 }
