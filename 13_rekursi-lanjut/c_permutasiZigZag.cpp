@@ -3,7 +3,7 @@
 using namespace std;
 int n, flag = 0;
 
-int record[1000], pernah[1000];
+int record[1000], pernah[1000] = {false};
 
 void permutasi(int depth){
 	int i,j;
@@ -11,9 +11,16 @@ void permutasi(int depth){
 		if (depth>=3) {
 			int flag_num = 1;
 			for (j=1; j<depth-1; j++) {	
-				if ( record[j] < record[j-1] && record[j] < record[j+1] || record[j] > record[j-1] && record[j] > record[j+1]) {
-					flag_num = 1;
-				} else {
+				//if ( !(((record[j] < record[j-1]) && (record[j] < record[j+1])) || ((record[j] > record[j-1]) && (record[j] > record[j+1]))) ) {
+				//	flag_num = 0;
+				//} else {
+				//	flag_num = 1;
+				//}
+				
+				bool cond_1 = (record[j] < record[j-1]) && (record[j] < record[j+1]);
+				bool cond_2 = (record[j] > record[j-1]) && (record[j] > record[j+1]);
+
+				if (!(cond_1 || cond_2)) {
 					flag_num = 0;
 				}
 			}
@@ -22,13 +29,13 @@ void permutasi(int depth){
 				for (i =0; i<n; i++) {
 					cout<<record[i];
 				}
-				cout<<"\n";
+				cout<<endl;
 			}
 		} else {
 			for (i =0; i<n; i++) {
 				cout<<record[i];
 			}
-			cout<<"\n";
+			cout<<endl;
 		}	
 	} else {
 		for (i=1; i<=n; i++) {
